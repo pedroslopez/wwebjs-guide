@@ -1,3 +1,7 @@
+---
+description: How to connect and send/receive messages
+---
+
 # Getting Started
 
 ## Installation
@@ -96,5 +100,19 @@ client.on('message', message => {
 });
 ```
 
+![](.gitbook/assets/image%20%283%29.png)
 
+You could also choose **not** to send it as a quoted reply by using the `sendMessage` function available on the client:
+
+```javascript
+client.on('message', message => {
+	if(message.body === '!ping') {
+		client.sendMessage(message.from, 'pong');
+	}
+});
+```
+
+![](.gitbook/assets/image%20%284%29.png)
+
+In this case, notice that we had to specify which chat we were sending the message to.
 
