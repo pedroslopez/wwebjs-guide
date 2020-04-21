@@ -2,28 +2,61 @@
 description: How to download and upload files
 ---
 
-# Handling Attachments
+# Downloading and Sending Attachments
 
-## Getting Super Powers
+## Downloading Media
 
-Becoming a super hero is a fairly straight forward process:
+Sometimes your client may need to download and process media files that have been attached to messages it receives. This library includes some useful functions to download these files in base64 format.
 
+You can detect which messages have attached media by checking its `hasMedia` property. Then, you can actually download the data by using `downloadMedia()`:
+
+```javascript
+client.on('message', async msg => {
+    if(msg.hasMedia) {
+        const media = await msg.downloadMedia();
+        // do something with the media data here
+    }
+});
 ```
-$ give me super-powers
+
+The `downloadMedia` function returns an object of type [MessageMedia](https://pedroslopez.me/whatsapp-web.js/MessageMedia.html). This will give you access to its mimetype, base64 data and filename, if specified.
+
+{% hint style="danger" %}
+You shouldn't assume that the download will be successful. In cases where the media is not able to be downloaded \(for example, if the media has been deleted from the phone or can no longer be downloaded\), the `downloadMedia()` function will return `undefined`.
+{% endhint %}
+
+## Sending Media
+
+You can easily send photos, audio, videos and gifs by using the library. To do this, you'll just need to construct a [MessageMedia](https://pedroslopez.me/whatsapp-web.js/MessageMedia.html) object, exactly like the one you get by downloading media. This requires the mimetype for the file you'll send, as well as a base64-encoded string representing the data.
+
+```javascript
+const { MessageMedia } = require('whatsapp-web.js');
+
+const media = new MessageMedia('image/png', base64Image);
+chat.sendMessage(media);
 ```
 
 {% hint style="info" %}
- Super-powers are granted randomly so please submit an issue if you're not happy with yours.
+You can send a caption along with the file by specifying the `caption` option while sending the message: `client.sendMessage(media, {caption: 'this is my caption'}`
 {% endhint %}
 
-Once you're strong enough, save the world:
+#### Caveat for sending videos and gifs
 
-{% code title="hello.sh" %}
-```bash
-# Ain't no code for that yet, sorry
-echo 'You got to trust me on this, I saved the world'
+Whatsapp-web.js uses [puppeteer](https://github.com/puppeteer/puppeteer), which comes bundled with the Chromium browser, an open source version of the popular Google Chrome browser. Since AAC and H.264 are licensed formats, they are not supported by Chromium. More info on this can be found on the[ puppeteer documentation](https://github.com/puppeteer/puppeteer#q-what-features-does-puppeteer-not-support).
+
+Because of this, you'll need to point puppeteer to use a separately installed Chrome browser if you intend to use this functionality. This can be done by passing the `executablePath` option to puppeteer while creating the client:
+
+```javascript
+const client = new Client({
+    puppeteer: {
+        executablePath: '/path/to/Chrome',
+    }
+})
 ```
-{% endcode %}
 
+The `executablePath` value will depend on your OS and install location for Chrome, but here are some defaults by OS:
 
+* **macOS:** `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`
+* **Windows**: `C:/Program Files (x86)/Google/Chrome/Application/chrome.exe`
+* **Linux:** `/usr/bin/google-chrome-stable`
 
