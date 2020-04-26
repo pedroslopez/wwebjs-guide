@@ -1,6 +1,10 @@
+---
+description: How to get and send messages with mentioned users
+---
+
 # User mentions
 
-![](../.gitbook/assets/image%20%285%29.png)
+![Example of message with a mentioned user](../.gitbook/assets/image%20%285%29.png)
 
 ## Getting mentioned users
 
