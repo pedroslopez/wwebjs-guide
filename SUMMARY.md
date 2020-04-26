@@ -4,6 +4,7 @@
 
 ## Features
 
+* [Resuming Sessions](features/resuming-sessions.md)
 * [Downloading and Sending Attachments](features/handling-attachments.md)
 * [User mentions](features/user-mentions.md)
 * [Documentation](https://pedroslopez.me/whatsapp-web.js)
