@@ -35,7 +35,7 @@ const SESSION_FILE_PATH = './session.json';
 // Load the session data if it has been previously saved
 let sessionData;
 if(fs.existsSync(SESSION_FILE_PATH)) {
-    sessionData = require(sessionData);
+    sessionData = require(SESSION_FILE_PATH);
 }
 
 // Use the saved values
