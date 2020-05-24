@@ -2,7 +2,7 @@
 
 You probably don't want to have to scan a QR code every time you restart your bot. This can be done by saving the session info you get from the `authenticated` event and later passing it as an option while instantiating the client.
 
-### The authenticated event
+## The authenticated event
 
 This event is emitted after authentication is successful, whether it's due to the QR Code being scanned or the session has been restored successfully. This event gives you a `session` object that you can use to later restore the same session.
 
@@ -13,7 +13,7 @@ client.on('authenticated', (session) => {
 });
 ```
 
-### Restoring the session
+## Restoring the session
 
 The same object you get from the `authenticated` event can be passed as an option when creating the client:
 
@@ -23,7 +23,7 @@ const client = new Client({
 });
 ```
 
-### Example: Saving session data to a file
+## Example: Saving session data to a file
 
 ```javascript
 const fs = require('fs');
@@ -52,7 +52,5 @@ client.on('authenticated', (session) => {
         }
     });
 });
-
-
 ```
 

@@ -40,6 +40,17 @@ chat.sendMessage(media);
 You can send a caption along with the file by specifying the `caption` option while sending the message: `client.sendMessage(media, {caption: 'this is my caption'}`
 {% endhint %}
 
+#### Sending local files
+
+If you're sending files from your computer, you can use a helper function to automatically read the file in base64, compute its mime type and get its filename:
+
+```javascript
+const { MessageMedia } = require('whatsapp-web.js');
+
+const media = MessageMedia.fromFilePath('./path/to/image.png');
+chat.sendMessage(media);
+```
+
 #### Caveat for sending videos and gifs
 
 Whatsapp-web.js uses [puppeteer](https://github.com/puppeteer/puppeteer), which comes bundled with the Chromium browser, an open source version of the popular Google Chrome browser. Since AAC and H.264 are licensed formats, they are not supported by Chromium. More info on this can be found on the[ puppeteer documentation](https://github.com/puppeteer/puppeteer#q-what-features-does-puppeteer-not-support).
