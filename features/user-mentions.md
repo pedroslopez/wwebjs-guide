@@ -45,7 +45,7 @@ The following is a simple command that mentions all users in a group if someone 
 ```javascript
 // Mention everyone
 client.on('message', async (msg) => {
-    if(msg === '!everyone') {
+    if(msg.body === '!everyone') {
         const chat = await msg.getChat();
         
         let text = "";
