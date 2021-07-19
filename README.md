@@ -5,7 +5,7 @@ description: How to connect and send/receive messages
 # Getting Started
 
 {% hint style="warning" %}
-H**eads up!**  
+**Heads up!**  
 The whatsapp-web.js guide is still a work in progress. To learn about all the features available to you in the library, please check out the [documentation](https://docs.wwebjs.dev/).
 {% endhint %}
 
