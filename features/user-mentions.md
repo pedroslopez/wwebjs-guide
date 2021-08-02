@@ -30,9 +30,10 @@ You can mention other contacts by using the `mentions` option when sending a mes
 // Mention users that send you a message
 
 client.on('message', async (msg) => {
+    const chat = await msg.getChat();
     const user = await msg.getContact();
     
-    msg.reply(`Hello @${user.id.user}`, {
+    await chat.sendMessage(`Hello @${user.id.user}`, {
         mentions: [user]
     });
 });
@@ -58,7 +59,7 @@ client.on('message', async (msg) => {
             text += `@${participant.id.user} `;
         }
 
-        chat.sendMessage(text, { mentions });
+        await chat.sendMessage(text, { mentions });
     }
 });
 ```

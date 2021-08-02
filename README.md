@@ -18,7 +18,7 @@ $ npm i whatsapp-web.js
 ```
 
 {% hint style="info" %}
- NodeJS v14 or higher is required
+ NodeJS v12 or higher is required
 {% endhint %}
 
 ## First steps
